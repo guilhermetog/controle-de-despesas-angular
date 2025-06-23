@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ExpenseService } from '../../services/expense.service';
-import { Expense } from '../../models/expense.model';
+import { FormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { ExpenseFormComponent } from '../expense-form/expense-form.component';
 import { ExpenseSummaryComponent } from '../expense-summary/expense-summary.component';
-import { FormsModule } from '@angular/forms';
+import { ExpenseService } from '../../services/expense.service';
+import { Expense } from '../../models/expense.model';
 
 @Component({
     selector: 'expense-list',
     standalone: true,
-    imports: [CommonModule, ExpenseFormComponent, ExpenseSummaryComponent, FormsModule],
+    imports: [CommonModule, FormsModule, MatTableModule, MatButtonModule, MatIconModule, ExpenseFormComponent, ExpenseSummaryComponent],
     templateUrl: './expense-list.component.html',
+    styleUrls: ['./expense-list.component.css']
 })
 export class ExpenseListComponent {
     expenses: Expense[] = [];

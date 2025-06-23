@@ -2,40 +2,48 @@
 <section>
     <h2>Despesas</h2>
     <expense-summary [expenses]="filteredExpenses"></expense-summary>
-    <div>
-        <label>
-            Categoria:
-            <input [(ngModel)]="filterCategory" placeholder="Filtrar por categoria" />
-        </label>
-        <label>
-            Data:
-            <input [(ngModel)]="filterDate" type="date" placeholder="Filtrar por data" />
-        </label>
-    </div>
+    <mat-form-field appearance="fill">
+        <mat-label>Categoria</mat-label>
+        <input matInput [(ngModel)]="filterCategory" placeholder="Filtrar por categoria" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Data</mat-label>
+        <input matInput [(ngModel)]="filterDate" type="date" placeholder="Filtrar por data" />
+    </mat-form-field>
     <expense-form *ngIf="editingExpense" [expense]="editingExpense" [editing]="!!editingExpense.id"
         (save)="saveExpense($event)" (cancel)="cancelEdit()"></expense-form>
     <expense-form *ngIf="!editingExpense" (save)="saveExpense($event)"></expense-form>
-    <table>
-        <thead>
-            <tr>
-                <th>Descrição</th>
-                <th>Valor</th>
-                <th>Categoria</th>
-                <th>Data</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let expense of filteredExpenses">
-                <td>{{ expense.description }}</td>
-                <td>{{ expense.amount | currency:'BRL' }}</td>
-                <td>{{ expense.category }}</td>
-                <td>{{ expense.date }}</td>
-                <td>
-                    <button (click)="startEdit(expense)">Editar</button>
-                    <button (click)="remove(expense.id)">Remover</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <mat-table [dataSource]="filteredExpenses">
+        <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef>Descrição</mat-header-cell>
+            <mat-cell *matCellDef="let expense">{{ expense.description }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef>Valor</mat-header-cell>
+            <mat-cell *matCellDef="let expense">{{ expense.amount | currency:'BRL' }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="category">
+            <mat-header-cell *matHeaderCellDef>Categoria</mat-header-cell>
+            <mat-cell *matCellDef="let expense">{{ expense.category }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="date">
+            <mat-header-cell *matHeaderCellDef>Data</mat-header-cell>
+            <mat-cell *matCellDef="let expense">{{ expense.date }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>Ações</mat-header-cell>
+            <mat-cell *matCellDef="let expense">
+                <div class="actions">
+                    <button mat-icon-button color="primary" (click)="startEdit(expense)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="remove(expense.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="['description','amount','category','date','actions']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['description','amount','category','date','actions'];"></mat-row>
+    </mat-table>
 </section>

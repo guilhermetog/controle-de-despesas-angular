@@ -1,13 +1,17 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { Expense } from '../../models/expense.model';
 
 @Component({
     selector: 'expense-form',
     standalone: true,
-    imports: [CommonModule, FormsModule],
+    imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
     templateUrl: './expense-form.component.html',
+    styleUrls: ['./expense-form.component.css']
 })
 export class ExpenseFormComponent {
     @Input() expense: Expense = { id: 0, description: '', amount: 0, category: '', date: '' };

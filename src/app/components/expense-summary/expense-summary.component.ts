@@ -1,12 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 import { Expense } from '../../models/expense.model';
 
 @Component({
     selector: 'expense-summary',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, MatCardModule],
     templateUrl: './expense-summary.component.html',
+    styleUrls: ['./expense-summary.component.css']
 })
 export class ExpenseSummaryComponent {
     @Input() expenses: Expense[] = [];

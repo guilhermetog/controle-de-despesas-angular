@@ -1,0 +1,8 @@
+mat-card {
+    margin-bottom: 1rem;
+}
+
+mat-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}

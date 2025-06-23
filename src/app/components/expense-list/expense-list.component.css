@@ -1,0 +1,14 @@
+mat-table {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+mat-header-row,
+mat-row {
+    min-height: 48px;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+}

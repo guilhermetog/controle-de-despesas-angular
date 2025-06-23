@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ExpenseListComponent } from './components/expense-list/expense-list.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ExpenseListComponent],
+  imports: [RouterOutlet, MatToolbarModule, MatButtonModule],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
-export class App {
-  protected title = 'meu-projeto-angular';
-}
+export class App { }

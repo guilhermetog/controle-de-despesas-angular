@@ -1,9 +1,11 @@
-<section>
-    <h2>Resumo de Gastos</h2>
-    <div>Total: {{ total | currency:'BRL' }}</div>
-    <ul>
-        <li *ngFor="let cat of categories">
-            {{ cat }}: {{ getTotalByCategory(cat) | currency:'BRL' }}
-        </li>
-    </ul>
-</section>
+<mat-card>
+    <mat-card-title>Resumo de Gastos</mat-card-title>
+    <mat-card-content>
+        <div>Total: <strong>{{ total | currency:'BRL' }}</strong></div>
+        <ul>
+            <li *ngFor="let cat of categories">
+                {{ cat }}: {{ getTotalByCategory(cat) | currency:'BRL' }}
+            </li>
+        </ul>
+    </mat-card-content>
+</mat-card>

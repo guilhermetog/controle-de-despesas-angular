@@ -18,7 +18,7 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    // O app não exibe mais o título padrão, então o teste deve ser ajustado
-    expect(compiled.querySelector('h2')?.textContent).toContain('Despesas');
+    // O app agora tem uma toolbar, então vamos verificar se ela existe
+    expect(compiled.querySelector('mat-toolbar')).toBeTruthy();
   });
 });
