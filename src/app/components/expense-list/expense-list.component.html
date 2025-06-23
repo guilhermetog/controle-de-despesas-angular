@@ -1,18 +1,18 @@
 <!-- Componente para listar despesas -->
 <section>
     <h2>Despesas</h2>
-    <expense-summary [expenses]="filteredExpenses"></expense-summary>
-    <mat-form-field appearance="fill">
-        <mat-label>Categoria</mat-label>
-        <input matInput [(ngModel)]="filterCategory" placeholder="Filtrar por categoria" />
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Data</mat-label>
-        <input matInput [(ngModel)]="filterDate" type="date" placeholder="Filtrar por data" />
-    </mat-form-field>
-    <expense-form *ngIf="editingExpense" [expense]="editingExpense" [editing]="!!editingExpense.id"
-        (save)="saveExpense($event)" (cancel)="cancelEdit()"></expense-form>
-    <expense-form *ngIf="!editingExpense" (save)="saveExpense($event)"></expense-form>
+    <button mat-raised-button color="primary" routerLink="/nova">Nova Despesa</button>
+    <button mat-raised-button color="accent" routerLink="/resumo">Resumo</button>
+    <div class="filters">
+        <mat-form-field appearance="fill">
+            <mat-label>Categoria</mat-label>
+            <input matInput [(ngModel)]="filterCategory" placeholder="Filtrar por categoria" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Data</mat-label>
+            <input matInput [(ngModel)]="filterDate" type="date" placeholder="Filtrar por data" />
+        </mat-form-field>
+    </div>
     <mat-table [dataSource]="filteredExpenses">
         <ng-container matColumnDef="description">
             <mat-header-cell *matHeaderCellDef>Descrição</mat-header-cell>

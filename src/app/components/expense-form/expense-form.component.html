@@ -1,3 +1,6 @@
+<button mat-icon-button routerLink="/despesas" aria-label="Voltar para despesas" *ngIf="editing">
+    <mat-icon>arrow_back</mat-icon>
+</button>
 <form (ngSubmit)="onSubmit()" #expenseForm="ngForm">
     <h2>{{ editing ? 'Editar' : 'Nova' }} Despesa</h2>
     <mat-form-field appearance="fill">

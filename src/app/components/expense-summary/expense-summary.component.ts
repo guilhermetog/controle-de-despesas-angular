@@ -1,12 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { Expense } from '../../models/expense.model';
 
 @Component({
     selector: 'expense-summary',
     standalone: true,
-    imports: [CommonModule, MatCardModule],
+    imports: [CommonModule, MatCardModule, MatIconModule],
     templateUrl: './expense-summary.component.html',
     styleUrls: ['./expense-summary.component.css']
 })

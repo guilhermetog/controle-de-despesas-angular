@@ -4,12 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { Expense } from '../../models/expense.model';
 
 @Component({
     selector: 'expense-form',
     standalone: true,
-    imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+    imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule],
     templateUrl: './expense-form.component.html',
     styleUrls: ['./expense-form.component.css']
 })
