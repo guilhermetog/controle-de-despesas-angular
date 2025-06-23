@@ -1,0 +1,59 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ExpenseService } from '../../services/expense.service';
+import { Expense } from '../../models/expense.model';
+import { ExpenseFormComponent } from '../expense-form/expense-form.component';
+import { ExpenseSummaryComponent } from '../expense-summary/expense-summary.component';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+    selector: 'expense-list',
+    standalone: true,
+    imports: [CommonModule, ExpenseFormComponent, ExpenseSummaryComponent, FormsModule],
+    templateUrl: './expense-list.component.html',
+})
+export class ExpenseListComponent {
+    expenses: Expense[] = [];
+    editingExpense: Expense | null = null;
+
+    filterCategory = '';
+    filterDate = '';
+
+    constructor(private expenseService: ExpenseService) {
+        this.loadExpenses();
+    }
+
+    loadExpenses() {
+        this.expenses = this.expenseService.getAll();
+    }
+
+    remove(id: number) {
+        this.expenseService.remove(id);
+        this.loadExpenses();
+    }
+
+    startEdit(expense: Expense) {
+        this.editingExpense = { ...expense };
+    }
+
+    saveExpense(expense: Expense) {
+        if (expense.id) {
+            this.expenseService.update(expense);
+        } else {
+            this.expenseService.add(expense);
+        }
+        this.editingExpense = null;
+        this.loadExpenses();
+    }
+
+    cancelEdit() {
+        this.editingExpense = null;
+    }
+
+    get filteredExpenses() {
+        return this.expenses.filter(e =>
+            (!this.filterCategory || e.category === this.filterCategory) &&
+            (!this.filterDate || e.date === this.filterDate)
+        );
+    }
+}

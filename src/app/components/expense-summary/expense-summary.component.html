@@ -1,0 +1,9 @@
+<section>
+    <h2>Resumo de Gastos</h2>
+    <div>Total: {{ total | currency:'BRL' }}</div>
+    <ul>
+        <li *ngFor="let cat of categories">
+            {{ cat }}: {{ getTotalByCategory(cat) | currency:'BRL' }}
+        </li>
+    </ul>
+</section>

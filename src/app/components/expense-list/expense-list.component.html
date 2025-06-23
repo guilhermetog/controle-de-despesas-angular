@@ -1,0 +1,41 @@
+<!-- Componente para listar despesas -->
+<section>
+    <h2>Despesas</h2>
+    <expense-summary [expenses]="filteredExpenses"></expense-summary>
+    <div>
+        <label>
+            Categoria:
+            <input [(ngModel)]="filterCategory" placeholder="Filtrar por categoria" />
+        </label>
+        <label>
+            Data:
+            <input [(ngModel)]="filterDate" type="date" placeholder="Filtrar por data" />
+        </label>
+    </div>
+    <expense-form *ngIf="editingExpense" [expense]="editingExpense" [editing]="!!editingExpense.id"
+        (save)="saveExpense($event)" (cancel)="cancelEdit()"></expense-form>
+    <expense-form *ngIf="!editingExpense" (save)="saveExpense($event)"></expense-form>
+    <table>
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Categoria</th>
+                <th>Data</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let expense of filteredExpenses">
+                <td>{{ expense.description }}</td>
+                <td>{{ expense.amount | currency:'BRL' }}</td>
+                <td>{{ expense.category }}</td>
+                <td>{{ expense.date }}</td>
+                <td>
+                    <button (click)="startEdit(expense)">Editar</button>
+                    <button (click)="remove(expense.id)">Remover</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>

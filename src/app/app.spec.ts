@@ -18,6 +18,7 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, meu-projeto-angular');
+    // O app não exibe mais o título padrão, então o teste deve ser ajustado
+    expect(compiled.querySelector('h2')?.textContent).toContain('Despesas');
   });
 });

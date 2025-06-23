@@ -1,0 +1,21 @@
+<form (ngSubmit)="onSubmit()" #expenseForm="ngForm">
+    <h2>{{ editing ? 'Editar' : 'Nova' }} Despesa</h2>
+    <label>
+        Descrição:
+        <input name="description" [(ngModel)]="expense.description" required />
+    </label>
+    <label>
+        Valor:
+        <input name="amount" type="number" [(ngModel)]="expense.amount" required min="0.01" step="0.01" />
+    </label>
+    <label>
+        Categoria:
+        <input name="category" [(ngModel)]="expense.category" required />
+    </label>
+    <label>
+        Data:
+        <input name="date" type="date" [(ngModel)]="expense.date" required />
+    </label>
+    <button type="submit">{{ editing ? 'Salvar' : 'Adicionar' }}</button>
+    <button type="button" *ngIf="editing" (click)="cancelEdit()">Cancelar</button>
+</form>
